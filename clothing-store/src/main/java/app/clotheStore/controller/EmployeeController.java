@@ -1,7 +1,7 @@
-package app.clothing_store.controller;
+package app.clotheStore.controller;
 
-import app.clothing_store.entity.Customer;
-import app.clothing_store.service.CustomerService;
+import app.clotheStore.entity.Employee;
+import app.clotheStore.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/customer")
-public class CustomerController {
+@RequestMapping("/api/employee")
+public class EmployeeController {
 
     @Autowired
-    private CustomerService customerService;
+    private EmployeeService employeeService;
 
     @PostMapping("/save")
-    public ResponseEntity<String> save(@RequestBody Customer customer) {
+    public ResponseEntity<String> save(@RequestBody Employee employee) {
         try {
-            String message = this.customerService.save(customer);
+            String message = this.employeeService.save(employee);
             return new ResponseEntity<>(message, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -27,9 +27,9 @@ public class CustomerController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> update(@RequestBody Customer customer, @PathVariable Long id) {
+    public ResponseEntity<String> update(@RequestBody Employee employee, @PathVariable Long id) {
         try {
-            String message = customerService.update(customer, id);
+            String message = employeeService.update(employee, id);
             return new ResponseEntity<>(message, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -39,7 +39,7 @@ public class CustomerController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
         try {
-            String message = this.customerService.delete(id);
+            String message = this.employeeService.delete(id);
             return new ResponseEntity<>(message, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -47,9 +47,9 @@ public class CustomerController {
     }
 
     @GetMapping("/listAll")
-    public ResponseEntity<List<Customer>> listAll() {
+    public ResponseEntity<List<Employee>> listAll() {
         try {
-            List<Customer> list = this.customerService.listAll();
+            List<Employee> list = this.employeeService.listAll();
             return new ResponseEntity<>(list, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -57,10 +57,10 @@ public class CustomerController {
     }
 
     @GetMapping("/findById/{id}")
-    public ResponseEntity<Customer> findById(@PathVariable Long id){
+    public ResponseEntity<Employee> findById(@PathVariable Long id){
         try {
-            Customer customer = this.customerService.findById(id);
-            return new ResponseEntity<>(customer, HttpStatus.OK);
+            Employee employee = this.employeeService.findById(id);
+            return new ResponseEntity<>(employee, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }

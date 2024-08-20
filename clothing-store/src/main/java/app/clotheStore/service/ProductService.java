@@ -1,7 +1,7 @@
-package app.clothing_store.service;
+package app.clotheStore.service;
 
-import app.clothing_store.entity.Product;
-import app.clothing_store.repository.ProductRepository;
+import app.clotheStore.entity.Product;
+import app.clotheStore.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

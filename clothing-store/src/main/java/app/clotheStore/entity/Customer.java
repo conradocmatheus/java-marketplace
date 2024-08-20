@@ -1,4 +1,4 @@
-package app.clothing_store.entity;
+package app.clotheStore.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
