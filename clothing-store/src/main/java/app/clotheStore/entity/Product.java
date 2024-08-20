@@ -1,15 +1,14 @@
 package app.clotheStore.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,4 +26,7 @@ public class Product {
 
     @Positive
     private Double price;
+
+    @ManyToMany(mappedBy = "products")
+    private List<Sale> sales;
 }
