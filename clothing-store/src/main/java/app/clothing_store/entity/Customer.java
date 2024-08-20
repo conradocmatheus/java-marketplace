@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.br.CPF;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Client {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
