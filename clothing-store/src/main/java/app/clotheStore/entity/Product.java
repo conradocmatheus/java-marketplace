@@ -26,5 +26,5 @@ public class Product {
     private String name;
 
     @Positive
-    private Double value;
+    private Double price;
 }
