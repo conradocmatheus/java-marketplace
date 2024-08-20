@@ -31,7 +31,7 @@ public class Customer {
     private String cpf;
 
     @Positive
-    @NotBlank
+    @NotNull
     private int age;
 
     @NotNull
