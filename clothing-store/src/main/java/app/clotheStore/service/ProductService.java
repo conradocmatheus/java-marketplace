@@ -2,6 +2,7 @@ package app.clotheStore.service;
 
 import app.clotheStore.entity.Product;
 import app.clotheStore.repository.ProductRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,16 +24,24 @@ public class ProductService {
     // PUT
     // Update a Product
     public String update(Product product, Long id){
-        product.setId(id);
-        productRepository.save(product);
-        return product.getName() + " successfully updated";
+        if (productRepository.existsById(id)){
+            product.setId(id);
+            productRepository.save(product);
+            return (product.getName() + " successfully updated");
+        } else {
+            throw new EntityNotFoundException("Product with ID: " + id + " not found");
+        }
     }
 
     // DELETE
     //  a Product
     public String delete(Long id){
-        this.productRepository.deleteById(id);
-        return "Product with id: " + id + " deleted";
+        if (productRepository.existsById(id)){
+            this.productRepository.deleteById(id);
+            return "Product with id: " + id + " deleted";
+        } else {
+            throw new EntityNotFoundException("Product with ID: " + id + " not found");
+        }
     }
 
     // GET
@@ -44,6 +53,15 @@ public class ProductService {
     // GET
     // Find Product by ID
     public Product findById(Long id){
-        return this.productRepository.findById(id).get();
+        if (productRepository.existsById(id)){
+            return this.productRepository.findById(id).get();
+        } else {
+            throw new EntityNotFoundException("Product with ID: " + id + " not found");
+        }
+    }
+
+    // Verify Product existence by ID
+    public boolean existsById(Long id) {
+        return productRepository.existsById(id);
     }
 }

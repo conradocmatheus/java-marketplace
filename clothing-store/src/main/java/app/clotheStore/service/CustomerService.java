@@ -32,7 +32,6 @@ public class CustomerService {
         } else {
             throw new EntityNotFoundException("Customer with ID: " + id + " not found");
         }
-
     }
 
     // DELETE

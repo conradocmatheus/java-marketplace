@@ -2,6 +2,7 @@ package app.clotheStore.controller;
 
 import app.clotheStore.entity.Sale;
 import app.clotheStore.service.SaleService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +32,10 @@ public class SaleController {
         try {
             String message = saleService.update(sale, id);
             return new ResponseEntity<>(message, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -41,8 +44,10 @@ public class SaleController {
         try {
             String message = this.saleService.delete(id);
             return new ResponseEntity<>(message, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -57,12 +62,14 @@ public class SaleController {
     }
 
     @GetMapping("/findById/{id}")
-    public ResponseEntity<Sale> findById(@PathVariable Long id){
+    public ResponseEntity<?> findById(@PathVariable Long id){
         try {
             Sale sale = this.saleService.findById(id);
             return new ResponseEntity<>(sale, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 }

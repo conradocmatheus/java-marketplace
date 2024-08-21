@@ -2,6 +2,7 @@ package app.clotheStore.service;
 
 import app.clotheStore.entity.Sale;
 import app.clotheStore.repository.SaleRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,19 +21,15 @@ public class SaleService {
         return "Sale successfully saved with ID: " + sale.getId();
     }
 
-    // PUT
-    // Update a Sale
-    public String update(Sale sale, Long id){
-        sale.setId(id);
-        saleRepository.save(sale);
-        return "Sale with ID: " + id + " successfully updated";
-    }
-
     // DELETE
     //  a Sale
     public String delete(Long id){
-        this.saleRepository.deleteById(id);
-        return "Sale with ID: " + id + " deleted";
+        if (saleRepository.existsById(id)){
+            this.saleRepository.deleteById(id);
+            return "Customer with id: " + id + " deleted";
+        } else {
+            throw new EntityNotFoundException("Customer with ID: " + id + " not found");
+        }
     }
 
     // GET
@@ -44,6 +41,15 @@ public class SaleService {
     // GET
     // Find Sale by ID
     public Sale findById(Long id){
-        return this.saleRepository.findById(id).get();
+        if (saleRepository.existsById(id)){
+            return this.saleRepository.findById(id).get();
+        } else {
+            throw new EntityNotFoundException("Sale with ID: " + id + " not found");
+        }
+    }
+
+    // Verify Sale existence by ID
+    public boolean existsById(Long id) {
+        return saleRepository.existsById(id);
     }
 }
