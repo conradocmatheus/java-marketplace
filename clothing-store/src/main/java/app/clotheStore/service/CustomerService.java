@@ -61,13 +61,23 @@ public class CustomerService {
         }
     }
 
-    // Find Customer by total spent
-    public Customer getTopSpendingCustomer() {
-        return customerRepository.findTopCustomerByTotalSpent();
+    // Find Customer by CPF
+    public Customer findByCpf(String cpf) {
+        if (cpf == null || cpf.isEmpty()) {
+            throw new IllegalArgumentException("CPF cannot be null or empty");
+        }
+        Customer customer = customerRepository.findByCpf(cpf);
+        if (customer == null) {
+            throw new EntityNotFoundException("Customer with CPF: " + cpf + " not found");
+        }
+        return customer;
     }
+
+
 
     // Verify Customer existence by ID
     public boolean existsById(Long id) {
         return customerRepository.existsById(id);
     }
+
 }

@@ -5,6 +5,7 @@ import app.clotheStore.service.CustomerService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -73,8 +74,15 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/top-customer")
-    public Customer getTopSpendingCustomer() {
-        return customerService.getTopSpendingCustomer();
+    @GetMapping("/findByCpf/{cpf}")
+    public ResponseEntity<?> findByCpf(@PathVariable String cpf){
+        try {
+            Customer customer = customerService.findByCpf(cpf);
+            return new ResponseEntity<>(customer, HttpStatus.OK);
+        } catch (IllegalArgumentException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (EntityNotFoundException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 }
