@@ -20,10 +20,10 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Field (name) must not be blank")
     private String name;
 
-    @NotBlank
+    @NotBlank(message = "Field (registrationNumber) must not be blank")
     private String registrationNumber;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)

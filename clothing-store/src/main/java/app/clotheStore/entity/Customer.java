@@ -24,18 +24,18 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Field (name) must not be blank")
     private String name;
 
-    @CPF
+    @CPF(message = "Field (cpf) is not a valid CPF")
     private String cpf;
 
-    @Positive
-    @NotNull
+    @Positive(message = "Field (age) must be positive")
+    @NotNull(message = "Field (age) must not be null")
     private int age;
 
-    @NotNull
-    @Pattern(regexp = "^\\(\\d{2}\\)\\s\\d{5}-\\d{4}$", message = "Phone number format should be (XX) XXXXX-XXXX")
+    @NotNull(message = "Field (phoneNumber) must not be null")
+    @Pattern(regexp = "^\\(\\d{2}\\)\\s\\d{5}-\\d{4}$", message = "Field (phoneNumber) must be of format (XX) XXXXX-XXXX")
     private String phoneNumber;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)

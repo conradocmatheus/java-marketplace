@@ -21,10 +21,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Field (name) must not be blank")
     private String name;
 
-    @Positive
+    @Positive(message = "Field (price) must be higher than 0")
     private Double price;
 
     @ManyToMany(mappedBy = "products")

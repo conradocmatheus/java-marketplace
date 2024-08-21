@@ -22,11 +22,11 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Field (shippingAddress) must not be blank")
     private String shippingAddress;
 
-    @Positive
-    @NotBlank
+    @Positive(message = "Field (totalValue) must have a positive value" )
+    @NotBlank(message = "Field (totalValue) must not be blank")
     private Double totalValue;
 
     @ManyToOne
