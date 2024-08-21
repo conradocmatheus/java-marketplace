@@ -28,6 +28,6 @@ public class Employee {
     @NotBlank(message = "Field (registrationNumber) must not be blank")
     private String registrationNumber;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Sale> sales;
 }

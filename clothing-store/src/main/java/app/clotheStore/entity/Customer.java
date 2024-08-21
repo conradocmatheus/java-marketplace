@@ -40,6 +40,6 @@ public class Customer {
     @Pattern(regexp = "^\\(\\d{2}\\)\\s\\d{5}-\\d{4}$", message = "Field (phoneNumber) must be of format (XX) XXXXX-XXXX")
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Sale> sales;
 }
