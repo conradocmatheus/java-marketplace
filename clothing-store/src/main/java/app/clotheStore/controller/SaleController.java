@@ -27,18 +27,6 @@ public class SaleController {
         }
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<String> update(@RequestBody Sale sale, @PathVariable Long id) {
-        try {
-            String message = saleService.update(sale, id);
-            return new ResponseEntity<>(message, HttpStatus.OK);
-        } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
-
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
         try {
