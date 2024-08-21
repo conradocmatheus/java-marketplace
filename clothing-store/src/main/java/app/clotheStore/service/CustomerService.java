@@ -46,4 +46,9 @@ public class CustomerService {
     public Customer findById(Long id){
         return this.customerRepository.findById(id).get();
     }
+
+    // Find Customer by total spent
+    public Customer getTopSpendingCustomer() {
+        return customerRepository.findTopCustomerByTotalSpent();
+    }
 }

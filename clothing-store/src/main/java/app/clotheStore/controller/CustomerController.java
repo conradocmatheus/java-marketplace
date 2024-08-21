@@ -65,4 +65,9 @@ public class CustomerController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/top-customer")
+    public Customer getTopSpendingCustomer() {
+        return customerService.getTopSpendingCustomer();
+    }
 }
