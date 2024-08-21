@@ -1,5 +1,6 @@
 package app.clotheStore.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -16,6 +17,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties("sales")
 public class Sale {
 
     @Id
@@ -26,7 +28,7 @@ public class Sale {
     private String shippingAddress;
 
     @Positive(message = "Field (totalValue) must have a positive value" )
-    @NotBlank(message = "Field (totalValue) must not be blank")
+    @NotNull(message = "Field (totalValue) must not be null")
     private Double totalValue;
 
     @ManyToOne
