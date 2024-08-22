@@ -62,15 +62,15 @@ public class EmployeeService {
     }
 
     // Find Employee by Name
-    public Employee findByName(String name){
-        if (name == null || name.isEmpty()){
-            throw new IllegalArgumentException("Name cannot be null or empty");
+    public List<Employee> findAllByFirstName(String firstName) {
+        if (firstName == null || firstName.isEmpty()) {
+            throw new IllegalArgumentException("First name cannot be null or empty");
         }
-        Employee employee = employeeRepository.findByName(name);
-        if (employee == null) {
-            throw new EntityNotFoundException("Employee with Name: " + name + " not found");
+        List<Employee> employees = employeeRepository.findByNameStartingWith(firstName);
+        if (employees.isEmpty()) {
+            throw new EntityNotFoundException("No employees found with first name: " + firstName);
         }
-        return employee;
+        return employees;
     }
 
     // Find Employee by Registration Number

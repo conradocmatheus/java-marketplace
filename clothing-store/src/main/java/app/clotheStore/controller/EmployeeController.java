@@ -74,16 +74,18 @@ public class EmployeeController {
         }
     }
 
-    @GetMapping("/findByName/{name}")
-    public ResponseEntity<?> findByName(@PathVariable String name){
+    @GetMapping("/by-first-name")
+    public ResponseEntity<?> findAllByFirstName(@RequestParam String firstName) {
         try {
-            Employee employee = employeeService.findByName(name);
-            return new ResponseEntity<>(employee, HttpStatus.OK);
+            List<Employee> employees = employeeService.findAllByFirstName(firstName);
+            return ResponseEntity.ok(employees);
         } catch (IllegalArgumentException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (EntityNotFoundException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
+
+
     }
 
     @GetMapping("/findByRegistrationNumber/{registrationNumber}")
