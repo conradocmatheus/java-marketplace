@@ -61,11 +61,6 @@ public class EmployeeService {
         }
     }
 
-    // Verify Employee existence by ID
-    public boolean existsById(Long id) {
-        return employeeRepository.existsById(id);
-    }
-
     // Find Employee by Name
     public Employee findByName(String name){
         if (name == null || name.isEmpty()){
@@ -76,5 +71,22 @@ public class EmployeeService {
             throw new EntityNotFoundException("Employee with Name: " + name + " not found");
         }
         return employee;
+    }
+
+    // Find Employee by Registration Number
+    public Employee findByRegistrationNumber(String registrationNumber){
+        if (registrationNumber == null || registrationNumber.isEmpty()){
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }
+        Employee employee = employeeRepository.findByRegistrationNumber(registrationNumber);
+        if (employee == null) {
+            throw new EntityNotFoundException("Employee with Registration Number: " + registrationNumber + " not found");
+        }
+        return employee;
+    }
+
+    // Verify Employee existence by ID
+    public boolean existsById(Long id) {
+        return employeeRepository.existsById(id);
     }
 }

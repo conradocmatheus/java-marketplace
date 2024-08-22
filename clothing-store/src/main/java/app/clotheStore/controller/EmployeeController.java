@@ -85,4 +85,16 @@ public class EmployeeController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/findByName/{registrationNumber}")
+    public ResponseEntity<?> findByRegistrationNumber(@PathVariable String registrationNumber){
+        try {
+            Employee employee = employeeService.findByRegistrationNumber(registrationNumber);
+            return new ResponseEntity<>(employee, HttpStatus.OK);
+        } catch (IllegalArgumentException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (EntityNotFoundException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
 }
