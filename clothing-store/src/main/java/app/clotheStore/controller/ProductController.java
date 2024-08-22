@@ -85,4 +85,10 @@ public class ProductController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/products/by-price-greater-than-or-equal")
+    public ResponseEntity<List<Product>> findByPriceGreaterThanOrEqual(@RequestParam Double price) {
+        List<Product> products = productService.findByPriceGreaterThanOrEqual(price);
+        return ResponseEntity.ok(products);
+    }
 }

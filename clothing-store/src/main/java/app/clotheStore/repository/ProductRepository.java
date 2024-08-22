@@ -8,4 +8,7 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByNameStartingWith(String name);
+
+
+    List<Product> findByPriceGreaterThanEqual(Double price);
 }
