@@ -1,1 +1,36 @@
 /clothing-store/target/
+
+# Eclipse/IntelliJ IDEA
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Maven / Gradle
+target/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+.gradle/
+.gradle/*
+
+# Spring Boot specific
+spring.log
+
+# Lombok generated files
+*.lombok.config
+
+# Environment variables
+.env
+
+# IDE local history
+.localhistory/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.orig
