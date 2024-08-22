@@ -91,4 +91,10 @@ public class ProductController {
         List<Product> products = productService.findByPriceGreaterThanOrEqual(price);
         return ResponseEntity.ok(products);
     }
+
+    @GetMapping("/top-products")
+    public ResponseEntity<List<Product>> getMostSoldProducts() {
+        List<Product> products = productService.findMostSoldProducts();
+        return ResponseEntity.ok(products);
+    }
 }

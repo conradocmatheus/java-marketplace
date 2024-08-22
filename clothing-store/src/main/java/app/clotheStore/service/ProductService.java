@@ -75,6 +75,10 @@ public class ProductService {
         return productRepository.findByPriceGreaterThanEqual(price);
     }
 
+    public List<Product> findMostSoldProducts() {
+        return productRepository.findTopProducts();
+    }
+
     // Verify Product existence by ID
     public boolean existsById(Long id) {
         return productRepository.existsById(id);
