@@ -74,4 +74,9 @@ public class SaleController {
         }
     }
 
+    @GetMapping("/by-employee-id")
+    public ResponseEntity<List<Sale>> findSalesByEmployeeId(@RequestParam Long employeeId) {
+        List<Sale> sales = saleService.findSalesByEmployeeId(employeeId);
+        return ResponseEntity.ok(sales);
+    }
 }
