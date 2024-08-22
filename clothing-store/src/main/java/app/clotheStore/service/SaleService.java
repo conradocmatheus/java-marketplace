@@ -91,6 +91,13 @@ public class SaleService {
         return sales;
     }
 
+    public List<Sale> findSalesByEmployeeId(Long employeeId) {
+        if (employeeId == null) {
+            throw new IllegalArgumentException("Employee ID cannot be null");
+        }
+        return saleRepository.findSalesByEmployeeId(employeeId);
+    }
+
     // Verify Sale existence by ID
     public boolean existsById(Long id) {
         return saleRepository.existsById(id);
