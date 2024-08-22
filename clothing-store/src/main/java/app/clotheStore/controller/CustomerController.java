@@ -98,4 +98,10 @@ public class CustomerController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/top-by-purchases")
+    public ResponseEntity<List<Customer>> getTopCustomersByPurchaseCount() {
+        List<Customer> customers = customerService.findTopCustomersByPurchaseCount();
+        return ResponseEntity.ok(customers);
+    }
 }

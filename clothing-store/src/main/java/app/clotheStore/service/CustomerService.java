@@ -85,6 +85,11 @@ public class CustomerService {
         return customer;
     }
 
+    // Find top Customer by PurchaseCount
+    public List<Customer> findTopCustomersByPurchaseCount() {
+        return customerRepository.findTopCustomersByPurchaseCount();
+    }
+
     // Verify Customer existence by ID
     public boolean existsById(Long id) {
         return customerRepository.existsById(id);

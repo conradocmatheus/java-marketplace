@@ -12,5 +12,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     List<Customer> findByNameStartingWith(String firstName);
 
-    // falta uma query personalizada
+    @Query("SELECT c FROM Customer c JOIN c.sales s GROUP BY c ORDER BY COUNT(s) DESC")
+    List<Customer> findTopCustomersByPurchaseCount();
 }
