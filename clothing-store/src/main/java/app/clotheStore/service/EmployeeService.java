@@ -85,6 +85,10 @@ public class EmployeeService {
         return employee;
     }
 
+    public List<Employee> findTopEmployeesBySalesCount() {
+        return employeeRepository.findTopEmployeesBySalesCount();
+    }
+
     // Verify Employee existence by ID
     public boolean existsById(Long id) {
         return employeeRepository.existsById(id);

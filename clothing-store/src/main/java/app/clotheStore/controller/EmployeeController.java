@@ -97,4 +97,10 @@ public class EmployeeController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/top-by-sales")
+    public ResponseEntity<List<Employee>> getTopEmployeesBySalesCount() {
+        List<Employee> employees = employeeService.findTopEmployeesBySalesCount();
+        return ResponseEntity.ok(employees);
+    }
 }
