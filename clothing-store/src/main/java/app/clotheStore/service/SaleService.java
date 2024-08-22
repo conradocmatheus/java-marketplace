@@ -1,7 +1,5 @@
 package app.clotheStore.service;
 
-import app.clotheStore.entity.Customer;
-import app.clotheStore.entity.Employee;
 import app.clotheStore.entity.Product;
 import app.clotheStore.entity.Sale;
 import app.clotheStore.repository.CustomerRepository;
@@ -80,6 +78,17 @@ public class SaleService {
         } else {
             throw new EntityNotFoundException("Sale with ID: " + id + " not found");
         }
+    }
+
+    public List<Sale> findByShippingAddressStartingWith(String shippingAddress) {
+        if (shippingAddress == null || shippingAddress.isEmpty()) {
+            throw new IllegalArgumentException("Shipping address cannot be null or empty");
+        }
+        List<Sale> sales = saleRepository.findByShippingAddressStartingWith(shippingAddress);
+        if (sales.isEmpty()){
+            throw new EntityNotFoundException("No sales found with ShippingAddress: " + shippingAddress);
+        }
+        return sales;
     }
 
     // Verify Sale existence by ID

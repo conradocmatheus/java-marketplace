@@ -1,5 +1,6 @@
 package app.clotheStore.controller;
 
+import app.clotheStore.entity.Product;
 import app.clotheStore.entity.Sale;
 import app.clotheStore.service.SaleService;
 import jakarta.persistence.EntityNotFoundException;
@@ -58,6 +59,18 @@ public class SaleController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/by-shipping-address")
+    public ResponseEntity<?>  findByShippingAddressStartingWith(@RequestParam String shippingAddress) {
+        try {
+            List<Sale> sales = saleService.findByShippingAddressStartingWith(shippingAddress);
+            return ResponseEntity.ok(sales);
+        } catch (IllegalArgumentException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (EntityNotFoundException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 }
