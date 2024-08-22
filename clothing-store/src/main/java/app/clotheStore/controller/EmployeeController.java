@@ -86,7 +86,7 @@ public class EmployeeController {
         }
     }
 
-    @GetMapping("/findByName/{registrationNumber}")
+    @GetMapping("/findByRegistrationNumber/{registrationNumber}")
     public ResponseEntity<?> findByRegistrationNumber(@PathVariable String registrationNumber){
         try {
             Employee employee = employeeService.findByRegistrationNumber(registrationNumber);
