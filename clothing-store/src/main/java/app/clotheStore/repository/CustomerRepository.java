@@ -7,4 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     Customer findByCpf(String cpf);
+
+    Customer findByName(String name);
+
+    // falta uma query personalizada
 }
