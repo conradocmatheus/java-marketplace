@@ -1,5 +1,6 @@
 package app.clotheStore.controller;
 
+import app.clotheStore.entity.Employee;
 import app.clotheStore.entity.Product;
 import app.clotheStore.service.ProductService;
 import jakarta.persistence.EntityNotFoundException;
@@ -70,6 +71,18 @@ public class ProductController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/products/by-name")
+    public ResponseEntity<?> findNameStartingWith(@RequestParam String name) {
+        try {
+            List<Product> products = productService.findNameStartingWith(name);
+            return ResponseEntity.ok(products);
+        } catch (IllegalArgumentException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (EntityNotFoundException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 }

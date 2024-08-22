@@ -60,6 +60,17 @@ public class ProductService {
         }
     }
 
+    public List<Product> findNameStartingWith(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }
+        List<Product> products = productRepository.findByNameStartingWith(name);
+        if (products.isEmpty()) {
+            throw new EntityNotFoundException("No products found with name: " + name);
+        }
+        return products;
+    }
+
     // Verify Product existence by ID
     public boolean existsById(Long id) {
         return productRepository.existsById(id);
