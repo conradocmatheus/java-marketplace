@@ -74,7 +74,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/products/by-name")
+    @GetMapping("/by-name")
     public ResponseEntity<?> findNameStartingWith(@RequestParam String name) {
         try {
             List<Product> products = productService.findNameStartingWith(name);
