@@ -84,8 +84,6 @@ public class EmployeeController {
         } catch (EntityNotFoundException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
-
-
     }
 
     @GetMapping("/findByRegistrationNumber/{registrationNumber}")

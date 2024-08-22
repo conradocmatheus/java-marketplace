@@ -74,15 +74,15 @@ public class CustomerService {
     }
 
     // Find Customer by Name
-    public Customer findByName(String name){
-        if (name == null || name.isEmpty()){
-            throw new IllegalArgumentException("Name cannot be null or empty");
+    public List<Customer> findAllByFirstName(String firstName) {
+        if (firstName == null || firstName.isEmpty()) {
+            throw new IllegalArgumentException("First name cannot be null or empty");
         }
-        Customer customer = customerRepository.findByName(name);
-        if (customer == null) {
-            throw new EntityNotFoundException("Customer with Name: " + name + " not found");
+        List<Customer> customers = customerRepository.findByNameStartingWith(firstName);
+        if (customers.isEmpty()) {
+            throw new EntityNotFoundException("No customers found with first name: " + firstName);
         }
-        return customer;
+        return customers;
     }
 
     // Verify Customer existence by ID

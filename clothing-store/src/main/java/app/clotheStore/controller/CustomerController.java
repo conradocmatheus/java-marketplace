@@ -1,6 +1,7 @@
 package app.clotheStore.controller;
 
 import app.clotheStore.entity.Customer;
+import app.clotheStore.entity.Employee;
 import app.clotheStore.service.CustomerService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,11 +87,11 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/findByName/{name}")
-    public ResponseEntity<?> findByName(@PathVariable String name){
+    @GetMapping("/by-first-name")
+    public ResponseEntity<?> findAllByFirstName(@RequestParam String firstName) {
         try {
-            Customer customer = customerService.findByName(name);
-            return new ResponseEntity<>(customer, HttpStatus.OK);
+            List<Customer> customers = customerService.findAllByFirstName(firstName);
+            return ResponseEntity.ok(customers);
         } catch (IllegalArgumentException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (EntityNotFoundException e){
