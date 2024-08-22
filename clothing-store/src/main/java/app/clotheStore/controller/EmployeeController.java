@@ -1,5 +1,6 @@
 package app.clotheStore.controller;
 
+import app.clotheStore.entity.Customer;
 import app.clotheStore.entity.Employee;
 import app.clotheStore.service.EmployeeService;
 import jakarta.persistence.EntityNotFoundException;
@@ -70,6 +71,18 @@ public class EmployeeController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/findByName/{name}")
+    public ResponseEntity<?> findByName(@PathVariable String name){
+        try {
+            Employee employee = employeeService.findByName(name);
+            return new ResponseEntity<>(employee, HttpStatus.OK);
+        } catch (IllegalArgumentException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (EntityNotFoundException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 }

@@ -1,5 +1,6 @@
 package app.clotheStore.service;
 
+import app.clotheStore.entity.Customer;
 import app.clotheStore.entity.Employee;
 import app.clotheStore.repository.EmployeeRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -63,5 +64,17 @@ public class EmployeeService {
     // Verify Employee existence by ID
     public boolean existsById(Long id) {
         return employeeRepository.existsById(id);
+    }
+
+    // Find Employee by Name
+    public Employee findByName(String name){
+        if (name == null || name.isEmpty()){
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }
+        Employee employee = employeeRepository.findByName(name);
+        if (employee == null) {
+            throw new EntityNotFoundException("Employee with Name: " + name + " not found");
+        }
+        return employee;
     }
 }

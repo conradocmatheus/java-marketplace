@@ -85,8 +85,6 @@ public class CustomerService {
         return customer;
     }
 
-
-
     // Verify Customer existence by ID
     public boolean existsById(Long id) {
         return customerRepository.existsById(id);
