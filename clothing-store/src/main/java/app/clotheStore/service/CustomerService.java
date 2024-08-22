@@ -61,18 +61,6 @@ public class CustomerService {
         }
     }
 
-    // Find Customer by CPF
-    public Customer findByCpf(String cpf) {
-        if (cpf == null || cpf.isEmpty()) {
-            throw new IllegalArgumentException("CPF cannot be null or empty");
-        }
-        Customer customer = customerRepository.findByCpf(cpf);
-        if (customer == null) {
-            throw new EntityNotFoundException("Customer with CPF: " + cpf + " not found");
-        }
-        return customer;
-    }
-
     // Find Customer by Name
     public List<Customer> findAllByFirstName(String firstName) {
         if (firstName == null || firstName.isEmpty()) {
@@ -83,6 +71,18 @@ public class CustomerService {
             throw new EntityNotFoundException("No customers found with first name: " + firstName);
         }
         return customers;
+    }
+
+    // Find Customer by CPF
+    public Customer findByCpf(String cpf) {
+        if (cpf == null || cpf.isEmpty()) {
+            throw new IllegalArgumentException("CPF cannot be null or empty");
+        }
+        Customer customer = customerRepository.findByCpf(cpf);
+        if (customer == null) {
+            throw new EntityNotFoundException("Customer with CPF: " + cpf + " not found");
+        }
+        return customer;
     }
 
     // Verify Customer existence by ID

@@ -75,11 +75,11 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/findByCpf/{cpf}")
-    public ResponseEntity<?> findByCpf(@PathVariable String cpf){
+    @GetMapping("/by-first-name")
+    public ResponseEntity<?> findAllByFirstName(@RequestParam String firstName) {
         try {
-            Customer customer = customerService.findByCpf(cpf);
-            return new ResponseEntity<>(customer, HttpStatus.OK);
+            List<Customer> customers = customerService.findAllByFirstName(firstName);
+            return ResponseEntity.ok(customers);
         } catch (IllegalArgumentException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (EntityNotFoundException e){
@@ -87,11 +87,11 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/by-first-name")
-    public ResponseEntity<?> findAllByFirstName(@RequestParam String firstName) {
+    @GetMapping("/findByCpf/{cpf}")
+    public ResponseEntity<?> findByCpf(@PathVariable String cpf){
         try {
-            List<Customer> customers = customerService.findAllByFirstName(firstName);
-            return ResponseEntity.ok(customers);
+            Customer customer = customerService.findByCpf(cpf);
+            return new ResponseEntity<>(customer, HttpStatus.OK);
         } catch (IllegalArgumentException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (EntityNotFoundException e){
