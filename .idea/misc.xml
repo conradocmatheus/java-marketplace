@@ -16,6 +16,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/clothing-store/pom.xml" />
+        <option value="$PROJECT_DIR$/marketplace/pom.xml" />
       </list>
     </option>
   </component>
