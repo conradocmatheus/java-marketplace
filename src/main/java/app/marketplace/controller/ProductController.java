@@ -85,7 +85,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/products/by-price-greater-than-or-equal")
+    @GetMapping("/by-price-greater-than-or-equal")
     public ResponseEntity<List<Product>> findByPriceGreaterThanOrEqual(@RequestParam Double price) {
         List<Product> products = productService.findByPriceGreaterThanOrEqual(price);
         return ResponseEntity.ok(products);
