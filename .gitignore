@@ -1,36 +1,33 @@
-/clothing-store/target/
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
-# Eclipse/IntelliJ IDEA
+### STS ###
+.apt_generated
 .classpath
+.factorypath
 .project
-.settings/
-.idea/
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
 *.iml
 *.ipr
-*.iws
-out/
 
-# Maven / Gradle
-target/
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
 build/
-!gradle/wrapper/gradle-wrapper.jar
-.gradle/
-.gradle/*
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-# Spring Boot specific
-spring.log
-
-# Lombok generated files
-*.lombok.config
-
-# Environment variables
-.env
-
-# IDE local history
-.localhistory/
-
-# Temporary files
-*.tmp
-*.temp
-*.bak
-*.orig
+### VS Code ###
+.vscode/
