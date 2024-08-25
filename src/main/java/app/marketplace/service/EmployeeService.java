@@ -65,6 +65,7 @@ public class EmployeeService {
         }
     }
 
+    // GET
     // Find Employee by Name
     public List<Employee> findAllByFirstName(String firstName) {
         if (firstName == null || firstName.isEmpty()) {
@@ -77,6 +78,7 @@ public class EmployeeService {
         return employees;
     }
 
+    // GET
     // Find Employee by Registration Number
     public Employee findByRegistrationNumber(String registrationNumber){
         if (registrationNumber == null || registrationNumber.isEmpty()){
@@ -89,6 +91,8 @@ public class EmployeeService {
         return employee;
     }
 
+    // GET
+    // List employee by sales count
     public List<Employee> findTopEmployeesBySalesCount() {
         return employeeRepository.findTopEmployeesBySalesCount();
     }

@@ -27,7 +27,6 @@ public class CustomerService {
 
     }
 
-
     // PUT
     // Update a Customer
     public String update(Customer customer, Long id){
@@ -67,6 +66,7 @@ public class CustomerService {
         }
     }
 
+    // GET
     // Find Customer by Name
     public List<Customer> findAllByFirstName(String firstName) {
         if (firstName == null || firstName.isEmpty()) {
@@ -79,6 +79,7 @@ public class CustomerService {
         return customers;
     }
 
+    // GET
     // Find Customer by CPF
     public Customer findByCpf(String cpf) {
         if (cpf == null || cpf.isEmpty()) {
@@ -91,6 +92,7 @@ public class CustomerService {
         return customer;
     }
 
+    // GET
     // Find top Customer by PurchaseCount
     public List<Customer> findTopCustomersByPurchaseCount() {
         return customerRepository.findTopCustomersByPurchaseCount();
