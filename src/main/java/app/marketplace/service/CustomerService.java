@@ -15,11 +15,18 @@ public class CustomerService {
     private CustomerRepository customerRepository;
 
     // POST
-    // Save a Customer
-    public String save(Customer customer){
-        this.customerRepository.save(customer);
-        return "Customer: " + customer.getName() + ", successfully saved";
+// Save a Customer
+    public String save(Customer customer) {
+        Customer existingCustomer = customerRepository.findByCpf(customer.getCpf());
+        if (existingCustomer != null) {
+            return "Error: CPF " + customer.getCpf() + " is already registered.";
+        } else {
+            customerRepository.save(customer);
+            return "Customer: " + customer.getName() + ", successfully saved";
+        }
+
     }
+
 
     // PUT
     // Update a Customer

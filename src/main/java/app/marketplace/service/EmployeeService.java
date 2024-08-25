@@ -17,8 +17,13 @@ public class EmployeeService {
     // POST
     // Save an Employee
     public String save(Employee employee){
-        this.employeeRepository.save(employee);
-        return "Employee: " + employee.getName() + ", successfully saved";
+        Employee existingEmployee = employeeRepository.findByRegistrationNumber(employee.getRegistrationNumber());
+        if (existingEmployee != null){
+            return "Error: Registration Number " + employee.getRegistrationNumber() + " is already registered.";
+        } else {
+            this.employeeRepository.save(employee);
+            return "Employee: " + employee.getName() + ", successfully saved";
+        }
     }
 
     // PUT
