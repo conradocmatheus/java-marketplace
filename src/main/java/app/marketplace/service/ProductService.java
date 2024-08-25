@@ -17,6 +17,7 @@ public class ProductService {
     // POST
     // Save a Product
     public String save(Product product){
+
         this.productRepository.save(product);
         return "Product: " + product.getName() + " successfully saved";
     }
@@ -60,6 +61,8 @@ public class ProductService {
         }
     }
 
+    // GET
+    // List all names starting with "letters, first name, words" - like a keyword search
     public List<Product> findNameStartingWith(String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Name cannot be null or empty");
@@ -71,10 +74,14 @@ public class ProductService {
         return products;
     }
 
+    // GET
+    // List all products whose price is greater than or equal than "value"
     public List<Product> findByPriceGreaterThanOrEqual(Double price) {
         return productRepository.findByPriceGreaterThanEqual(price);
     }
 
+    // GET
+    // List top sold products
     public List<Product> findMostSoldProducts() {
         return productRepository.findTopProducts();
     }
