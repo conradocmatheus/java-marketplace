@@ -79,6 +79,8 @@ public class SaleService {
         }
     }
 
+    // GET
+    // List sales by shipping address
     public List<Sale> findByShippingAddressStartingWith(String shippingAddress) {
         if (shippingAddress == null || shippingAddress.isEmpty()) {
             throw new IllegalArgumentException("Shipping address cannot be null or empty");
@@ -90,6 +92,8 @@ public class SaleService {
         return sales;
     }
 
+    // GET
+    // List sales by employee id
     public List<Sale> findSalesByEmployeeId(Long employeeId) {
         if (employeeId == null) {
             throw new IllegalArgumentException("Employee ID cannot be null");
