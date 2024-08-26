@@ -11,8 +11,8 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
 
     List<Sale> findByShippingAddressStartingWith(String shippingAddress);
 
+    List<Sale> findByCustomerId(Long customerId);
+
     @Query("SELECT s FROM Sale s WHERE s.employee.id = :employeeId")
     List<Sale> findSalesByEmployeeId(@Param("employeeId") Long employeeId);
-
-    // need to add new @query
 }

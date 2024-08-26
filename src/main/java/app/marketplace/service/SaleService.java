@@ -57,9 +57,9 @@ public class SaleService {
     public String delete(Long id){
         if (saleRepository.existsById(id)){
             this.saleRepository.deleteById(id);
-            return "Customer with id: " + id + " deleted";
+            return "Sale with id: " + id + " deleted";
         } else {
-            throw new EntityNotFoundException("Customer with ID: " + id + " not found");
+            throw new EntityNotFoundException("Sale with ID: " + id + " not found");
         }
     }
 
@@ -100,6 +100,17 @@ public class SaleService {
         }
         return saleRepository.findSalesByEmployeeId(employeeId);
     }
+
+    // GET
+    // List Sales by Client ID
+    public List<Sale> findSalesByCustomerId(Long customerId) {
+        List<Sale> sales = saleRepository.findByCustomerId(customerId);
+        if (sales.isEmpty()) {
+            throw new EntityNotFoundException("No sales found for customer ID: " + customerId);
+        }
+        return sales;
+    }
+
 
     // Verify Sale existence by ID
     public boolean existsById(Long id) {

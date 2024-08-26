@@ -74,9 +74,22 @@ public class SaleController {
         }
     }
 
-    @GetMapping("/by-employee-id")
-    public ResponseEntity<List<Sale>> findSalesByEmployeeId(@RequestParam Long employeeId) {
+    @GetMapping("/by-employee-id/{employeeId}")
+    public ResponseEntity<List<Sale>> findSalesByEmployeeId(@PathVariable Long employeeId) {
         List<Sale> sales = saleService.findSalesByEmployeeId(employeeId);
         return ResponseEntity.ok(sales);
     }
+
+    @GetMapping("/by-customer-id/{customerId}")
+    public ResponseEntity<?> findSalesByCustomerId(@PathVariable Long customerId) {
+        try {
+            List<Sale> sales = saleService.findSalesByCustomerId(customerId);
+            return ResponseEntity.ok(sales);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
