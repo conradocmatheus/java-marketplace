@@ -53,6 +53,8 @@ public class SaleService {
 
         double totalValue = 0;
         for (Product product : sale.getProducts()) {
+            // Optional is used here to handle the possibility of a missing product safely
+            // It helps avoid null pointer exceptions by explicitly checking for the presence of the value
             Optional<Product> optionalProduct = productRepository.findById(product.getId());
             if (optionalProduct.isPresent()) {
                 Product fullProduct = optionalProduct.get();
@@ -66,7 +68,6 @@ public class SaleService {
             }
         }
         sale.setTotalValue(totalValue);
-
         saleRepository.save(sale);
         return "Sale successfully saved with ID: " + sale.getId();
     }
