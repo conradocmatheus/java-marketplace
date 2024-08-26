@@ -2,14 +2,12 @@ package app.marketplace.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.List;
@@ -32,6 +30,7 @@ public class Customer {
     @CPF(message = "Field (cpf) is not a valid CPF")
     private String cpf;
 
+    @Max(120)
     @Positive(message = "Field (age) must be positive")
     @NotNull(message = "Field (age) must not be null")
     private int age;

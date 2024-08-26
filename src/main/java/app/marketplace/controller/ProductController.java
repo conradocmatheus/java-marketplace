@@ -3,6 +3,7 @@ package app.marketplace.controller;
 import app.marketplace.entity.Product;
 import app.marketplace.service.ProductService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping("/save")
-    public ResponseEntity<String> save(@RequestBody Product product) {
+    public ResponseEntity<String> save(@Valid @RequestBody Product product) {
         try {
             String message = this.productService.save(product);
             return new ResponseEntity<>(message, HttpStatus.CREATED);
@@ -28,7 +29,7 @@ public class ProductController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> update(@RequestBody Product product, @PathVariable Long id) {
+    public ResponseEntity<String> update(@Valid @RequestBody Product product, @PathVariable Long id) {
         try {
             String message = productService.update(product, id);
             return new ResponseEntity<>(message, HttpStatus.OK);

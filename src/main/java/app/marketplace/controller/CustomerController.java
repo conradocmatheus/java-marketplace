@@ -3,6 +3,7 @@ package app.marketplace.controller;
 import app.marketplace.entity.Customer;
 import app.marketplace.service.CustomerService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping("/save")
-    public ResponseEntity<String> save(@RequestBody Customer customer) {
+    public ResponseEntity<String> save(@Valid @RequestBody Customer customer) {
         try {
             String message = this.customerService.save(customer);
             return new ResponseEntity<>(message, HttpStatus.CREATED);
@@ -28,7 +29,7 @@ public class CustomerController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> update(@RequestBody Customer customer, @PathVariable Long id) {
+    public ResponseEntity<String> update(@Valid @RequestBody Customer customer, @PathVariable Long id) {
         try {
             String message = customerService.update(customer, id);
             return new ResponseEntity<>(message, HttpStatus.OK);
@@ -98,8 +99,13 @@ public class CustomerController {
     }
 
     @GetMapping("/top-by-purchases")
-    public ResponseEntity<List<Customer>> getTopCustomersByPurchaseCount() {
-        List<Customer> customers = customerService.findTopCustomersByPurchaseCount();
-        return ResponseEntity.ok(customers);
+    public ResponseEntity<?> getTopCustomersByPurchaseCount() {
+        try {
+            List<Customer> customers = customerService.findTopCustomersByPurchaseCount();
+            return ResponseEntity.ok(customers);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
+
 }
