@@ -24,7 +24,6 @@ public class Employee {
     private Long id;
 
     @NotBlank(message = "Field (name) must not be blank")
-    @Pattern(regexp = "\\w+\\s\\w+", message = "Name must contain at least 2 words and 1 space character")
     private String name;
 
     @NotBlank(message = "Field (registrationNumber) must not be blank")
