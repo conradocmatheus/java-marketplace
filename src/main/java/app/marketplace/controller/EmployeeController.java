@@ -78,7 +78,7 @@ public class EmployeeController {
     public ResponseEntity<?> findAllByFirstName(@RequestParam String firstName) {
         try {
             List<Employee> employees = employeeService.findAllByFirstName(firstName);
-            return ResponseEntity.ok(employees);
+            return new ResponseEntity<>(employees, HttpStatus.OK);
         } catch (IllegalArgumentException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (EntityNotFoundException e){
@@ -101,6 +101,6 @@ public class EmployeeController {
     @GetMapping("/top-by-sales")
     public ResponseEntity<List<Employee>> getTopEmployeesBySalesCount() {
         List<Employee> employees = employeeService.findTopEmployeesBySalesCount();
-        return ResponseEntity.ok(employees);
+        return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 }

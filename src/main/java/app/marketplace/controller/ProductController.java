@@ -78,7 +78,7 @@ public class ProductController {
     public ResponseEntity<?> findNameStartingWith(@RequestParam String name) {
         try {
             List<Product> products = productService.findNameStartingWith(name);
-            return ResponseEntity.ok(products);
+            return new ResponseEntity<>(products, HttpStatus.OK);
         } catch (IllegalArgumentException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (EntityNotFoundException e){
@@ -89,12 +89,12 @@ public class ProductController {
     @GetMapping("/by-price-greater-than-or-equal")
     public ResponseEntity<List<Product>> findByPriceGreaterThanOrEqual(@RequestParam Double price) {
         List<Product> products = productService.findByPriceGreaterThanOrEqual(price);
-        return ResponseEntity.ok(products);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
     @GetMapping("/top-products")
     public ResponseEntity<List<Product>> getMostSoldProducts() {
         List<Product> products = productService.findMostSoldProducts();
-        return ResponseEntity.ok(products);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 }

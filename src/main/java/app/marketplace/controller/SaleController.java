@@ -66,7 +66,7 @@ public class SaleController {
     public ResponseEntity<?>  findByShippingAddressStartingWith(@RequestParam String shippingAddress) {
         try {
             List<Sale> sales = saleService.findByShippingAddressStartingWith(shippingAddress);
-            return ResponseEntity.ok(sales);
+            return new ResponseEntity<>(sales, HttpStatus.OK);
         } catch (IllegalArgumentException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (EntityNotFoundException e){
@@ -77,14 +77,14 @@ public class SaleController {
     @GetMapping("/by-employee-id/{employeeId}")
     public ResponseEntity<List<Sale>> findSalesByEmployeeId(@PathVariable Long employeeId) {
         List<Sale> sales = saleService.findSalesByEmployeeId(employeeId);
-        return ResponseEntity.ok(sales);
+        return new ResponseEntity<>(sales, HttpStatus.OK);
     }
 
     @GetMapping("/by-customer-id/{customerId}")
     public ResponseEntity<?> findSalesByCustomerId(@PathVariable Long customerId) {
         try {
             List<Sale> sales = saleService.findSalesByCustomerId(customerId);
-            return ResponseEntity.ok(sales);
+            return new ResponseEntity<>(sales, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         } catch (Exception e) {

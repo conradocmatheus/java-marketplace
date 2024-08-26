@@ -78,7 +78,7 @@ public class CustomerController {
     public ResponseEntity<?> findAllByFirstName(@RequestParam String firstName) {
         try {
             List<Customer> customers = customerService.findAllByFirstName(firstName);
-            return ResponseEntity.ok(customers);
+            return new ResponseEntity<>(customers, HttpStatus.OK);
         } catch (IllegalArgumentException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (EntityNotFoundException e){
@@ -102,7 +102,7 @@ public class CustomerController {
     public ResponseEntity<?> getTopCustomersByPurchaseCount() {
         try {
             List<Customer> customers = customerService.findTopCustomersByPurchaseCount();
-            return ResponseEntity.ok(customers);
+            return new ResponseEntity<>(customers, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
