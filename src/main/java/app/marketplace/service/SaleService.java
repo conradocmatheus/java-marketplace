@@ -7,10 +7,12 @@ import app.marketplace.repository.EmployeeRepository;
 import app.marketplace.repository.ProductRepository;
 import app.marketplace.repository.SaleRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SaleService {
@@ -29,6 +31,7 @@ public class SaleService {
 
     // POST
     // Save a Sale
+    @Transactional
     public String save(Sale sale) {
         if (sale.getCustomer() == null || !customerRepository.existsById(sale.getCustomer().getId())) {
             throw new EntityNotFoundException("Customer not found with ID: " + (sale.getCustomer() != null ? sale.getCustomer().getId() : null));
@@ -48,14 +51,30 @@ public class SaleService {
             }
         }
 
+        double totalValue = 0;
+        for (Product product : sale.getProducts()) {
+            Optional<Product> optionalProduct = productRepository.findById(product.getId());
+            if (optionalProduct.isPresent()) {
+                Product fullProduct = optionalProduct.get();
+                if (fullProduct.getPrice() != null) {
+                    totalValue += fullProduct.getPrice();
+                } else {
+                    throw new IllegalArgumentException("Product price cannot be null for product with ID: " + product.getId());
+                }
+            } else {
+                throw new EntityNotFoundException("Product not found with ID: " + product.getId());
+            }
+        }
+        sale.setTotalValue(totalValue);
+
         saleRepository.save(sale);
         return "Sale successfully saved with ID: " + sale.getId();
     }
 
     // DELETE
     //  a Sale
-    public String delete(Long id){
-        if (saleRepository.existsById(id)){
+    public String delete(Long id) {
+        if (saleRepository.existsById(id)) {
             this.saleRepository.deleteById(id);
             return "Sale with id: " + id + " deleted";
         } else {
@@ -65,14 +84,14 @@ public class SaleService {
 
     // GET
     // List all Sales
-    public List<Sale> listAll(){
+    public List<Sale> listAll() {
         return this.saleRepository.findAll();
     }
 
     // GET
     // Find Sale by ID
-    public Sale findById(Long id){
-        if (saleRepository.existsById(id)){
+    public Sale findById(Long id) {
+        if (saleRepository.existsById(id)) {
             return this.saleRepository.findById(id).get();
         } else {
             throw new EntityNotFoundException("Sale with ID: " + id + " not found");
@@ -86,7 +105,7 @@ public class SaleService {
             throw new IllegalArgumentException("Shipping address cannot be null or empty");
         }
         List<Sale> sales = saleRepository.findByShippingAddressStartingWith(shippingAddress);
-        if (sales.isEmpty()){
+        if (sales.isEmpty()) {
             throw new EntityNotFoundException("No sales found with ShippingAddress: " + shippingAddress);
         }
         return sales;

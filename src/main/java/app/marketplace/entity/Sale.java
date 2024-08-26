@@ -27,8 +27,6 @@ public class Sale {
     @NotBlank(message = "Field (shippingAddress) must not be blank")
     private String shippingAddress;
 
-    @Positive(message = "Field (totalValue) must have a positive value" )
-    @NotNull(message = "Field (totalValue) must not be null")
     private Double totalValue;
 
     @ManyToOne
