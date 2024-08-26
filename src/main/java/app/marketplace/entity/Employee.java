@@ -3,6 +3,7 @@ package app.marketplace.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,7 @@ public class Employee {
     private Long id;
 
     @NotBlank(message = "Field (name) must not be blank")
+    @Pattern(regexp = "\\w+\\s\\w+", message = "Name must contain at least 2 words and 1 space character")
     private String name;
 
     @NotBlank(message = "Field (registrationNumber) must not be blank")
