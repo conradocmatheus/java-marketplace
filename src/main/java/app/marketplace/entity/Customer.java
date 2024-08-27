@@ -27,6 +27,7 @@ public class Customer {
     @NotBlank(message = "Field (name) must not be blank")
     private String name;
 
+    @Column(unique = true)
     @CPF(message = "Field (cpf) is not a valid CPF")
     private String cpf;
 

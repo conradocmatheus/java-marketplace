@@ -26,6 +26,7 @@ public class Employee {
     @NotBlank(message = "Field (name) must not be blank")
     private String name;
 
+    @Column(unique = true)
     @NotBlank(message = "Field (registrationNumber) must not be blank")
     private String registrationNumber;
 
