@@ -1,0 +1,527 @@
+{
+	"info": {
+		"_postman_id": "9e339036-ce42-48a1-bee5-d87706b58d68",
+		"name": "Marketplace",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37353086"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"João Pedro\",\r\n  \"cpf\": \"993.702.700-43\",\r\n  \"age\": 55,\r\n  \"phoneNumber\": \"(11) 98765-4321\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/customer/save"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"João da Silva\",\r\n  \"cpf\": \"123.456.789-09\",\r\n  \"age\": 31,\r\n  \"phoneNumber\": \"(11) 98765-1234\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/customer/update/7"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:8080/api/customer/delete/1"
+					},
+					"response": []
+				},
+				{
+					"name": "ListAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/customer/listAll"
+					},
+					"response": []
+				},
+				{
+					"name": "FindByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/customer/findById/2"
+					},
+					"response": []
+				},
+				{
+					"name": "FindByCpf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/customer/findByCpf/15570528911"
+					},
+					"response": []
+				},
+				{
+					"name": "FindByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/customer/findByName/joão silva"
+					},
+					"response": []
+				},
+				{
+					"name": "TopCustomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/customer/top-by-purchases"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Pedro\",\r\n  \"registrationNumber\": \"505176\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/employee/save"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Joao bola\",\r\n  \"registrationNumber\": \"EMP1435456\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/employee/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:8080/api/employee/delete/1"
+					},
+					"response": []
+				},
+				{
+					"name": "ListAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/employee/listAll"
+					},
+					"response": []
+				},
+				{
+					"name": "FindByID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/employee/findById/1"
+					},
+					"response": []
+				},
+				{
+					"name": "FindByName",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/employee/by-first-name?firstName=Pe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"employee",
+								"by-first-name"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "Pe"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindByRegistrationNumber",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/employee/findByRegistrationNumber/505176"
+					},
+					"response": []
+				},
+				{
+					"name": "TopEmployee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/employee/top-by-sales"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Blusa\",\r\n  \"price\":  20\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/product/save"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/product/update"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:8080/api/product/delete/1"
+					},
+					"response": []
+				},
+				{
+					"name": "ListAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/product/listAll"
+					},
+					"response": []
+				},
+				{
+					"name": "FindByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/product/findById/2"
+					},
+					"response": []
+				},
+				{
+					"name": "TopProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/product/top-products"
+					},
+					"response": []
+				},
+				{
+					"name": "ByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/product/by-name?name=camiseta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product",
+								"by-name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "camiseta"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "priceGreaterThenOrEqual",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/product/by-price-greater-than-or-equal?price=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product",
+								"by-price-greater-than-or-equal"
+							],
+							"query": [
+								{
+									"key": "price",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sale",
+			"item": [
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"shippingAddress\": \"Rua das Flores, 123, Centro, São Paulo, SP\",\r\n  \"customer\": {\r\n    \"id\": 1\r\n  },\r\n  \"employee\": {\r\n    \"id\": 1\r\n  },\r\n  \"products\": [\r\n    {\r\n      \"id\": 1\r\n    },\r\n    {\r\n      \"id\": 2\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/sale/save"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:8080/api/sale/delete/1"
+					},
+					"response": []
+				},
+				{
+					"name": "ListAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/sale/listAll"
+					},
+					"response": []
+				},
+				{
+					"name": "FindByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/sale/findById/2"
+					},
+					"response": []
+				},
+				{
+					"name": "FindByShippingAddress",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/sale/by-shipping-address?shippingAddress=Avenida",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sale",
+								"by-shipping-address"
+							],
+							"query": [
+								{
+									"key": "shippingAddress",
+									"value": "Avenida"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ByEmployeeID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/sale/by-employee-id/1"
+					},
+					"response": []
+				},
+				{
+					"name": "ByCustomerID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/sale/by-customer-id/2"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
