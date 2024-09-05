@@ -63,14 +63,14 @@ public class EmployeeController {
     }
 
     @GetMapping("/findById/{id}")
-    public ResponseEntity<?> findById(@PathVariable Long id){
+    public ResponseEntity<?> findById(@PathVariable Long id) {
         try {
-            Employee employee = this.employeeService.findById(id);
-            return new ResponseEntity<>(employee, HttpStatus.OK);
+            Employee employee = employeeService.findById(id);
+            return ResponseEntity.ok(employee);
         } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 

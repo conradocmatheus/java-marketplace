@@ -51,13 +51,10 @@ public class EmployeeService {
     }
 
     // GET
-    // Find Employee by ID
-    public Employee findById(Long id){
-        if (employeeRepository.existsById(id)){
-            return this.employeeRepository.findById(id).get();
-        } else {
-            throw new EntityNotFoundException("Employee with ID: " + id + " not found");
-        }
+// Find Employee by ID
+    public Employee findById(Long id) {
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Employee with ID: " + id + " not found"));
     }
 
     // GET
