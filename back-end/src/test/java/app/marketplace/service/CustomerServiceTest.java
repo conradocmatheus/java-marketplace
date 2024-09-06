@@ -3,6 +3,7 @@ package app.marketplace.service;
 import app.marketplace.entity.Customer;
 import app.marketplace.repository.CustomerRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -24,39 +26,35 @@ public class CustomerServiceTest {
     @MockBean
     CustomerRepository customerRepository;
 
-    @BeforeEach
-    void setup(){
+    private List<Customer> customers;
 
+    @BeforeEach
+    void setup() {
+        customers = new ArrayList<>();
+
+        customers.add(new Customer(1L, "João Silva", "12345678909", 25, "45991234567", Collections.emptyList()));
+        customers.add(new Customer(2L, "Maria Oliveira", "23456789012", 30, "45992345678", Collections.emptyList()));
+        customers.add(new Customer(3L, "Pedro Santos", "34567890123", 40, "45993456789", Collections.emptyList()));
+        customers.add(new Customer(4L, "Ana Souza", "45678901234", 22, "45994567890", Collections.emptyList()));
+        customers.add(new Customer(5L, "Carlos Pereira", "56789012345", 35, "45995678901", Collections.emptyList()));
+
+        when(customerRepository.findAll()).thenReturn(customers);
     }
 
     @Test
-    void saveCustomerTest(){
-
-        Customer customer = new Customer();
-
-        when(customerRepository.save(customer)).thenReturn(customer);
-
-        customer.setId(1L);
-        customer.setName("Joao pe");
-        customer.setCpf("15570528911");
-        customer.setAge(19);
-        customer.setPhoneNumber("45991214710");
-        customer.setSales(Collections.emptyList());
-
+    @DisplayName("Saving a customer")
+    void saveCustomerTest() {
+        Customer customer = new Customer(1L, "Joao pe", "15570528911", 19, "45991214710", Collections.emptyList());
+        when(customerRepository.save(any(Customer.class))).thenReturn(customer);
         var result = customerService.save(customer);
-
         assertEquals(customer, result);
     }
 
     @Test
-    void listCustomersTest(){
-        List<Customer> customers = new ArrayList<>();
-
-        Customer customer1 = new Customer(1L, "Jota pe", "15570528911", 19, "45991214710", Collections.emptyList());
-        Customer customer2 = new Customer(2L, "Jota Pedro", "15570528911", 19, "45991214710", Collections.emptyList());
-
-        when(customerRepository.findAll()).thenReturn(customers);
-
-
+    @DisplayName("List all customers")
+    void listCustomersTest() {
+        List<Customer> result = customerService.listAll();
+        assertEquals(customers, result);
     }
 }
+
