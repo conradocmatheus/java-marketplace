@@ -16,9 +16,9 @@ public class CustomerService {
 
     // POST
     // Save a Customer
-    public String save(Customer customer) {
+    public Customer save(Customer customer) {
             customerRepository.save(customer);
-            return "Customer: " + customer.getName() + ", successfully saved";
+            return customerRepository.save(customer);
     }
 
     // PUT
