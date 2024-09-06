@@ -17,20 +17,26 @@ public class CustomerService {
     // POST
     // Save a Customer
     public Customer save(Customer customer) {
-            customerRepository.save(customer);
             return customerRepository.save(customer);
     }
 
     // PUT
     // Update a Customer
-    public String update(Customer customer, Long id){
-        if (customerRepository.existsById(id)){
-            customer.setId(id);
-            customerRepository.save(customer);
-            return (customer.getName() + " successfully updated");
-        } else {
-            throw new EntityNotFoundException("Customer with ID: " + id + " not found");
-        }
+    public String update(Customer updatedCustomer, Long id) {
+        // Verifies customer existence
+        Customer existingCustomer = customerRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Customer not found"));
+
+        // Update customer details
+        existingCustomer.setName(updatedCustomer.getName());
+        existingCustomer.setCpf(updatedCustomer.getCpf());
+        existingCustomer.setAge(updatedCustomer.getAge());
+        existingCustomer.setPhoneNumber(updatedCustomer.getPhoneNumber());
+        existingCustomer.setSales(updatedCustomer.getSales());
+
+        // Saves the updated customer
+        customerRepository.save(existingCustomer);
+        return "Customer successfully updated";
     }
 
     // DELETE
