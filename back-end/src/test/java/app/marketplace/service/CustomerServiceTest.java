@@ -32,7 +32,6 @@ public class CustomerServiceTest {
 
     @BeforeEach
     void setup() {
-        // Initialize a list of customers
         customers = new ArrayList<>();
         customers.add(new Customer(1L, "João Silva", "12345678909", 25, "45991234567", Collections.emptyList()));
         customers.add(new Customer(2L, "Maria Oliveira", "23456789012", 30, "45992345678", Collections.emptyList()));
@@ -123,11 +122,26 @@ public class CustomerServiceTest {
         verify(customerRepository, never()).deleteById(999L);
     }
 
+    @Test
+    @DisplayName("Find customer by ID - Success")
+    void findCustomerByIdSuccess() {
+        // Act
+        Customer result = customerService.findById(3L);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(3L, result.getId());
+        assertEquals("Pedro Santos", result.getName());
+    }
 
     @Test
-    @DisplayName("Find by Id")
-    void findCustomerById(){
-
+    @DisplayName("Find customer by ID - Customer Not Found")
+    void findCustomerByIdNotFound() {
+        // Act & Assert
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> {
+            customerService.findById(999L);
+        });
+        assertEquals("Customer with ID: 999 not found", exception.getMessage());
     }
 
     @Test
