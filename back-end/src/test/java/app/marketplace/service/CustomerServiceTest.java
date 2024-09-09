@@ -102,26 +102,6 @@ public class CustomerServiceTest {
     }
 
     @Test
-    @DisplayName("List all customers")
-    void listCustomers() {
-        // Act
-        List<Customer> result = customerService.listAll();
-
-        // Assert
-        assertEquals(customers, result);
-    }
-
-    @Test
-    @DisplayName("Check if customer exists by ID")
-    void customerExistsById() {
-        // Act
-        boolean result = customerService.existsById(1L);
-
-        // Assert
-        assertTrue(result);
-    }
-
-    @Test
     @DisplayName("Delete an existing customer")
     void deleteCustomerSuccessfully() {
         // Act
@@ -142,4 +122,32 @@ public class CustomerServiceTest {
         assertEquals("Customer with ID: 999 not found", exception.getMessage());
         verify(customerRepository, never()).deleteById(999L);
     }
+
+
+    @Test
+    @DisplayName("Find by Id")
+    void findCustomerById(){
+
+    }
+
+    @Test
+    @DisplayName("List all customers")
+    void listCustomers() {
+        // Act
+        List<Customer> result = customerService.listAll();
+
+        // Assert
+        assertEquals(customers, result);
+    }
+
+    @Test
+    @DisplayName("Check if customer exists by ID")
+    void customerExistsById() {
+        // Act
+        boolean result = customerService.existsById(1L);
+
+        // Assert
+        assertTrue(result);
+    }
+
 }
