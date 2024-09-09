@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -83,6 +84,15 @@ public class CustomerServiceTest {
     void listCustomersTest() {
         List<Customer> result = customerService.listAll();
         assertEquals(customers, result);
+    }
+
+    @Test
+    @DisplayName("Customer Exists by ID")
+    void customerExistsByIdTest() {
+        Long customerId = 1L;
+        when(customerRepository.existsById(customerId)).thenReturn(true);
+        boolean result = customerService.existsById(customerId);
+        assertTrue(result);
     }
 }
 
