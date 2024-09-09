@@ -58,12 +58,9 @@ public class CustomerService {
 
     // GET
     // Find Customer by ID
-    public Customer findById(Long id){
-        if (customerRepository.existsById(id)){
-            return this.customerRepository.findById(id).get();
-        } else {
-            throw new EntityNotFoundException("Customer with ID: " + id + " not found");
-        }
+    public Customer findById(Long id) {
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Customer with ID: " + id + " not found"));
     }
 
     // GET
