@@ -21,7 +21,7 @@ public class CustomerController {
     @PostMapping("/save")
     public ResponseEntity<String> save(@Valid @RequestBody Customer customer) {
         try {
-            String message = this.customerService.save(customer);
+            String message = String.valueOf(this.customerService.save(customer));
             return new ResponseEntity<>(message, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);

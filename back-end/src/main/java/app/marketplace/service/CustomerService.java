@@ -16,21 +16,27 @@ public class CustomerService {
 
     // POST
     // Save a Customer
-    public String save(Customer customer) {
-            customerRepository.save(customer);
-            return "Customer: " + customer.getName() + ", successfully saved";
+    public Customer save(Customer customer) {
+            return customerRepository.save(customer);
     }
 
     // PUT
     // Update a Customer
-    public String update(Customer customer, Long id){
-        if (customerRepository.existsById(id)){
-            customer.setId(id);
-            customerRepository.save(customer);
-            return (customer.getName() + " successfully updated");
-        } else {
-            throw new EntityNotFoundException("Customer with ID: " + id + " not found");
-        }
+    public String update(Customer updatedCustomer, Long id) {
+        // Verifies customer existence
+        Customer existingCustomer = customerRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Customer not found"));
+
+        // Update customer details
+        existingCustomer.setName(updatedCustomer.getName());
+        existingCustomer.setCpf(updatedCustomer.getCpf());
+        existingCustomer.setAge(updatedCustomer.getAge());
+        existingCustomer.setPhoneNumber(updatedCustomer.getPhoneNumber());
+        existingCustomer.setSales(updatedCustomer.getSales());
+
+        // Saves the updated customer
+        customerRepository.save(existingCustomer);
+        return "Customer successfully updated";
     }
 
     // DELETE
@@ -52,12 +58,9 @@ public class CustomerService {
 
     // GET
     // Find Customer by ID
-    public Customer findById(Long id){
-        if (customerRepository.existsById(id)){
-            return this.customerRepository.findById(id).get();
-        } else {
-            throw new EntityNotFoundException("Customer with ID: " + id + " not found");
-        }
+    public Customer findById(Long id) {
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Customer with ID: " + id + " not found"));
     }
 
     // GET
