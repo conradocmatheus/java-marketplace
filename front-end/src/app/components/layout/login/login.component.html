@@ -2,21 +2,61 @@
   <div class="col-lg-4">
     <div class="card">
       <div class="card-body">
-        <h3 class="text-center">Login</h3>
-        <mdb-form-control class="mb-2">
-          <input mdbInput type="text" id="user" class="form-control" [(ngModel)]="user" />
-          <label mdbLabel class="form-label" for="form1">Login:</label>
-        </mdb-form-control>
+        <form>
+          <!-- Email input -->
+          <mdb-form-control class="mb-4">
+            <input mdbInput type="text" id="user-email" class="form-control" [(ngModel)]="user" />
+            <label mdbLabel class="form-label" for="user-email">Email address</label>
+          </mdb-form-control>
 
-        <mdb-form-control class="mb-2">
-          <input mdbInput type="password" id="user-password" class="form-control" [(ngModel)]="password" />
-          <label mdbLabel class="form-label" for="form1">Password:</label>
-        </mdb-form-control>
-        <div class="d-flex justify-content-center align-items-center">
-          <button type="button" class="btn btn-primary" mdbRipple (click)="loginUser()">
-            Login
-          </button>
-        </div>
+          <!-- Password input -->
+          <mdb-form-control class="mb-4">
+            <input mdbInput type="password" id="user-password" class="form-control" [(ngModel)]="password" />
+            <label mdbLabel class="form-label" for="user-password">Password</label>
+          </mdb-form-control>
+
+          <!-- 2 column grid layout for inline styling -->
+          <div class="row mb-4">
+            <div class="col d-flex justify-content-center">
+              <!-- Checkbox -->
+              <div class="form-check">
+                <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="form2Example31"
+                  [checked]="true" />
+                <label class="form-check-label" for="form2Example31"> Remember me </label>
+              </div>
+            </div>
+
+            <div class="col">
+              <!-- Simple link -->
+              <a href="#!">Forgot password?</a>
+            </div>
+          </div>
+
+          <!-- Submit button -->
+          <button mdbRipple type="button" class="btn btn-primary btn-block mb-4" mdbRipple (click)="loginUser()">Sign
+            in</button>
+
+          <!-- Register buttons -->
+          <div class="text-center">
+            <p>Not a member? <a href="#!">Register</a></p>
+            <p>or sign up with:</p>
+            <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+
+            <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
+              <i class="fab fa-google"></i>
+            </button>
+
+            <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
+              <i class="fab fa-twitter"></i>
+            </button>
+
+            <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
+              <i class="fab fa-github"></i>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
