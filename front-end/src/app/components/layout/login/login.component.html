@@ -1,8 +1,23 @@
-<div class="form-outline" data-mdb-input-init>
-  <input type="text" id="user" class="form-control" />
-  <label class="form-label" for="user">Login:</label>
-</div>
-<div class="form-outline" data-mdb-input-init>
-  <input type="text" id="user" class="form-control" />
-  <label class="form-label" for="user">Senha:</label>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="text-center">Login</h3>
+        <mdb-form-control class="mb-2">
+          <input mdbInput type="text" id="user" class="form-control" [(ngModel)]="user" />
+          <label mdbLabel class="form-label" for="form1">Login:</label>
+        </mdb-form-control>
+
+        <mdb-form-control class="mb-2">
+          <input mdbInput type="password" id="user-password" class="form-control" [(ngModel)]="password" />
+          <label mdbLabel class="form-label" for="form1">Password:</label>
+        </mdb-form-control>
+        <div class="d-flex justify-content-center align-items-center">
+          <button type="button" class="btn btn-primary" mdbRipple (click)="loginUser()">
+            Login
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
